@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BRASA BURGER — Hambúrguer artesanal na brasa</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#141210;--bg2:#1d1a17;--bg3:#272320;--fire:#e5501b;--ember:#b3200f;--gold:#ffb347;--tx:#f6efe6;--mu:#a89d90;--r:18px}
+html{scroll-behavior:smooth;scroll-padding-top:80px;height:100%}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--tx);font:16px/1.6 "Barlow","Segoe UI",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3,.logo{font-family:"Anton","Impact","Arial Narrow Bold",sans-serif;font-weight:400;letter-spacing:.02em;line-height:1.05}
+button{font:inherit;cursor:pointer;border:0;color:inherit;background:none}
+input,select,textarea{font:inherit;color:var(--tx);background:var(--bg3);border:1px solid #3a342e;border-radius:12px;padding:11px 14px;width:100%}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+section{padding:84px 5vw;max-width:1200px;margin:auto}
+h2{font-size:clamp(34px,5vw,56px);margin-bottom:10px}
+.sub{color:var(--mu);margin-bottom:34px;max-width:60ch}
+.btn{display:inline-block;padding:13px 26px;border-radius:99px;font-weight:700;background:linear-gradient(135deg,var(--fire),var(--ember));box-shadow:0 8px 24px #e5501b44;transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px #e5501b77}
+.btn.ghost{background:none;border:2px solid #4a423a;box-shadow:none}.btn.ghost:hover{border-color:var(--fire)}
+.card{background:var(--bg2);border-radius:var(--r);box-shadow:0 10px 30px #0006;border:1px solid #2c2722}
+header{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:.3s}
+header.s{background:#141210ee;backdrop-filter:blur(12px);box-shadow:0 4px 24px #0008}
+.nav{display:flex;align-items:center;gap:22px;max-width:1200px;margin:auto;padding:14px 5vw}
+.logo{font-size:26px;display:flex;gap:8px;align-items:center;margin-right:auto}
+.logo span{color:var(--fire)}
+.nav a{color:var(--tx);text-decoration:none;font-weight:600;font-size:15px;opacity:.85}.nav a:hover{color:var(--gold)}
+.links{display:flex;gap:22px}
+.cartb{position:relative;font-size:22px;padding:4px 8px}
+.cartb b{position:absolute;top:-6px;right:-4px;background:var(--fire);font-size:12px;border-radius:99px;min-width:20px;height:20px;display:grid;place-items:center}
+.burg{display:none;font-size:26px}
+@media(max-width:860px){.links{position:fixed;top:64px;left:0;right:0;background:var(--bg2);flex-direction:column;padding:20px 5vw;gap:16px;transform:translateY(-130%);transition:.3s;z-index:-1}.links.o{transform:none}.burg{display:block}.hide-m{display:none}}
+.hero{min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:30px;padding-top:110px;position:relative}
+.hero h1{font-size:clamp(48px,8vw,104px);animation:in 1s both}
+.hero h1 em{font-style:normal;color:var(--fire)}
+.hero p{color:var(--mu);font-size:18px;max-width:46ch;margin:20px 0 28px;animation:in 1s .2s both}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap;animation:in 1s .35s both}
+.stats{display:flex;gap:30px;margin-top:38px;color:var(--mu);font-size:14px;flex-wrap:wrap;animation:in 1s .5s both}.stats b{display:block;color:var(--gold);font-size:22px}
+.heroimg{position:relative;display:grid;place-items:center;animation:in 1.2s .2s both}
+.heroimg svg{width:100%;max-width:520px;filter:drop-shadow(0 30px 50px #e5501b55);animation:float 5s ease-in-out infinite}
+.glow{position:absolute;width:80%;aspect-ratio:1;border-radius:50%;background:radial-gradient(#e5501b55,transparent 65%);animation:pulse 3s infinite}
+.ember{position:absolute;bottom:10%;width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--fire);animation:rise 4s infinite;opacity:0}
+@keyframes in{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes float{50%{transform:translateY(-14px) rotate(1deg)}}
+@keyframes pulse{50%{transform:scale(1.12);opacity:.7}}
+@keyframes rise{0%{opacity:0;transform:translateY(0)}20%{opacity:1}100%{opacity:0;transform:translateY(-260px) translateX(30px)}}
+@media(max-width:860px){.hero{grid-template-columns:1fr;text-align:left}.heroimg{order:-1;max-height:300px}}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.tab{padding:9px 20px;border-radius:99px;background:var(--bg2);border:1px solid #3a342e;font-weight:600;transition:.2s}
+.tab.a,.tab:hover{background:var(--fire);border-color:var(--fire)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
+.prod{overflow:hidden;display:flex;flex-direction:column;transition:.25s}.prod:hover{transform:translateY(-6px);border-color:var(--fire)}
+.pimg{height:150px;display:grid;place-items:center;font-size:72px;background:radial-gradient(circle at 50% 60%,#e5501b44,#1d1a17 70%);position:relative}
+.pop{position:absolute;top:12px;left:12px;background:var(--gold);color:#222;font-size:12px;font-weight:800;padding:3px 10px;border-radius:99px}
+.pb{padding:18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.pb h3{font-size:22px}.pb small{color:var(--mu)}.pb .ing{font-size:13px;color:#8d8276;flex:1}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.price{font-size:22px;font-weight:800;color:var(--gold)}
+.add{background:var(--fire);padding:8px 14px;border-radius:99px;font-weight:700;font-size:14px;transition:.2s}.add:hover{background:var(--ember)}
+.build{display:grid;grid-template-columns:1fr 1fr;gap:26px;padding:28px}
+@media(max-width:860px){.build{grid-template-columns:1fr}}
+.step{margin-bottom:18px}.step h4{margin-bottom:8px;color:var(--gold)}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{padding:8px 14px;border-radius:99px;border:1px solid #3a342e;background:var(--bg3);font-size:14px;transition:.15s}
+.opt.a{background:var(--fire);border-color:var(--fire)}
+.prev{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-height:320px;background:radial-gradient(#e5501b22,transparent 70%);border-radius:var(--r)}
+.layer{height:var(--h,16px);width:var(--w,200px);border-radius:var(--rad,10px);background:var(--c);margin-top:-3px;animation:drop .35s both;box-shadow:0 2px 0 #0004}
+@keyframes drop{from{opacity:0;transform:translateY(-30px)}}
+.combos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.combo{padding:26px;position:relative}.combo.best{border:2px solid var(--gold)}
+.combo .tag{position:absolute;top:-12px;right:18px;background:var(--gold);color:#222;font-weight:800;font-size:12px;padding:4px 12px;border-radius:99px}
+.promo{background:linear-gradient(135deg,var(--ember),#6b1308 60%,#2a0e08);border-radius:28px;padding:50px 6vw;display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center;position:relative;overflow:hidden}
+.promo:after{content:"🔥";position:absolute;right:-20px;bottom:-40px;font-size:200px;opacity:.12}
+.promo h2{font-size:clamp(40px,6vw,72px)}
+.cd{display:flex;gap:12px}.cd div{background:#0006;border-radius:14px;padding:14px;text-align:center;min-width:64px}.cd b{display:block;font-size:30px;font-family:Anton,Impact,sans-serif}
+@media(max-width:860px){.promo{grid-template-columns:1fr}}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+@media(max-width:860px){.about{grid-template-columns:1fr}}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}.feat div{padding:14px;border-radius:14px;background:var(--bg2);font-size:14px}
+.kitchen{display:grid;grid-template-columns:1fr 1fr;gap:12px}.kitchen div{aspect-ratio:1;border-radius:var(--r);display:grid;place-items:center;font-size:64px;background:linear-gradient(135deg,#2d241d,#1a1512)}
+.rev{overflow:hidden}.track{display:flex;transition:transform .6s}.rc{min-width:100%;padding:0 4px}
+@media(min-width:800px){.rc{min-width:50%}}
+.rcard{padding:26px;margin:0 8px;height:100%}
+.av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:var(--fire)}
+.stars{color:var(--gold);letter-spacing:2px}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:18px}.dots i{width:9px;height:9px;border-radius:50%;background:#4a423a;cursor:pointer}.dots i.a{background:var(--fire)}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.gi{aspect-ratio:1;border-radius:14px;display:grid;place-items:center;font-size:60px;position:relative;overflow:hidden;background:linear-gradient(135deg,#33261c,#171310)}
+.gi span{position:absolute;inset:0;background:#b3200fcc;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:15px;opacity:0;transition:.25s}.gi:hover span{opacity:1}
+.loc{display:grid;grid-template-columns:1fr 1.2fr;gap:26px}
+@media(max-width:860px){.loc{grid-template-columns:1fr}}
+.loc .card{padding:26px;line-height:2}
+.map{min-height:300px;position:relative;overflow:hidden;background:#201c18}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+footer{background:#0d0b0a;padding:60px 5vw 30px;margin-top:40px}
+.fg{max-width:1200px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;color:var(--mu);font-size:14px}
+.fg h4{color:var(--tx);margin-bottom:10px}.fg a{display:block;color:var(--mu);text-decoration:none;line-height:2}.fg a:hover{color:var(--gold)}
+@media(max-width:860px){.fg{grid-template-columns:1fr 1fr}}
+.copy{text-align:center;color:#6d645a;margin-top:34px;font-size:13px}
+.wa{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:60;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;font-size:30px;box-shadow:0 8px 24px #0008;text-decoration:none}
+.ov{position:fixed;inset:0;background:#000a;z-index:90;opacity:0;pointer-events:none;transition:.3s}.ov.o{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--bg2);z-index:100;transform:translateX(100%);transition:.35s;display:flex;flex-direction:column;padding:20px;padding-top:calc(20px + env(safe-area-inset-top,0px))}
+.drawer.o{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.dh h3{font-size:28px}
+.dbody{flex:1;overflow:auto;display:flex;flex-direction:column;gap:12px}
+.ci{background:var(--bg3);border-radius:14px;padding:12px;display:grid;gap:8px}
+.q{display:flex;align-items:center;gap:10px}.q button{width:28px;height:28px;border-radius:50%;background:#3a342e}
+.tot{border-top:1px solid #3a342e;padding-top:12px;margin-top:12px;font-size:15px}.tot .row{margin:3px 0}.tot .big{font-size:20px;font-weight:800;color:var(--gold)}
+.modal{position:fixed;inset:0;z-index:110;display:none;place-items:center;padding:16px}.modal.o{display:grid}
+.mb{background:var(--bg2);border-radius:24px;padding:28px;width:min(560px,100%);max-height:92vh;overflow:auto;position:relative;border:1px solid #3a342e}
+.mb .x{position:absolute;top:14px;right:16px;font-size:22px}
+.f{display:grid;gap:10px;margin:14px 0}.f2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sp{display:flex;gap:6px;margin-bottom:14px}.sp i{flex:1;height:5px;border-radius:9px;background:#3a342e}.sp i.a{background:var(--fire)}
+.pay{display:flex;gap:8px}.pay .opt{flex:1;text-align:center}
+.tl{list-style:none;padding:0;margin:22px 0;position:relative}
+.tl li{display:flex;gap:14px;align-items:center;padding:12px 0;opacity:.35;transition:.5s;position:relative}
+.tl li:not(:last-child):after{content:"";position:absolute;left:17px;top:46px;height:22px;width:2px;background:#3a342e}
+.tl li i{width:36px;height:36px;border-radius:50%;background:#3a342e;display:grid;place-items:center;font-style:normal;flex:none}
+.tl li.d{opacity:1}.tl li.d i{background:var(--fire)}.tl li.c i{animation:pulse 1.2s infinite;box-shadow:0 0 18px var(--fire)}
+.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,40px);background:var(--fire);padding:10px 22px;border-radius:99px;z-index:120;opacity:0;transition:.3s;font-weight:700}.toast.o{opacity:1;transform:translate(-50%,0)}
+.msg{font-size:13px;margin-top:6px;color:var(--gold)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+
+<header id="hd"><div class="nav">
+<a href="#inicio" class="logo">
+<svg width="30" height="30" viewBox="0 0 24 24"><path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-4 3-7 1 1 1 2 2 3 1-2 1-5 1-8z" fill="#e5501b"/><path d="M12 12c1 2 3 3 3 5a3 3 0 0 1-6 0c0-2 2-3 3-5z" fill="#ffb347"/></svg>BRASA<span>BURGER</span></a>
+<div class="links" id="links"><a href="#inicio">Início</a><a href="#cardapio">Cardápio</a><a href="#combos">Combos</a><a href="#sobre">Sobre nós</a><a href="#avaliacoes">Avaliações</a><a href="#contato">Contato</a></div>
+<a href="#cardapio" class="btn hide-m" style="padding:9px 20px">Fazer pedido</a>
+<button class="cartb" id="cartBtn" aria-label="Abrir carrinho">🛒<b id="cnt">0</b></button>
+<button class="burg" id="burg" aria-label="Menu">☰</button>
+</div></header>
+
+<section class="hero" id="inicio">
+<div><h1>SEU BURGER.<br><em>SUA BRASA.</em><br>SEU MOMENTO.</h1>
+<p>Hambúrguer artesanal preparado na brasa, ingredientes selecionados e aquele sabor impossível de esquecer.</p>
+<div class="cta"><a class="btn" href="#cardapio">Ver cardápio</a><a class="btn ghost" href="#monte">Montar meu burger</a></div>
+<div class="stats"><div><b>★ 4.9/5</b>avaliação</div><div><b>+10.000</b>pedidos</div><div><b>100%</b>artesanal</div></div></div>
+<div class="heroimg"><div class="glow"></div>
+<svg viewBox="0 0 400 360" role="img" aria-label="Hambúrguer artesanal">
+<defs><linearGradient id="bun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2a33a"/><stop offset="1" stop-color="#c26a17"/></linearGradient></defs>
+<path d="M50 150c0-80 70-120 150-120s150 40 150 120z" fill="url(#bun)"/>
+<g fill="#fff3d0"><ellipse cx="130" cy="80" rx="9" ry="4" transform="rotate(-20 130 80)"/><ellipse cx="200" cy="58" rx="9" ry="4"/><ellipse cx="270" cy="85" rx="9" ry="4" transform="rotate(25 270 85)"/><ellipse cx="170" cy="105" rx="9" ry="4" transform="rotate(10 170 105)"/><ellipse cx="240" cy="112" rx="9" ry="4" transform="rotate(-15 240 112)"/></g>
+<path d="M40 158q20 22 40 0t40 0 40 0 40 0 40 0 40 0 40 0 40 0v-6H40z" fill="#5fae3a"/>
+<path d="M45 168h310l-20 24-30-16-30 22-30-22-30 22-30-22-30 22-30-22-30 16z" fill="#ffb81c"/>
+<rect x="38" y="178" width="324" height="40" rx="20" fill="#4a2417"/>
+<path d="M60 230h280l-10 14H70z" fill="#d6371f"/>
+<path d="M50 248h300q0 40-40 46H90q-40-6-40-46z" fill="url(#bun)"/></svg>
+<i class="ember" style="left:20%;animation-delay:0s"></i><i class="ember" style="left:40%;animation-delay:1.2s"></i><i class="ember" style="left:62%;animation-delay:2s"></i><i class="ember" style="left:80%;animation-delay:.6s"></i></div>
+</section>
+
+<section id="cardapio"><h2>CARDÁPIO</h2><p class="sub">Tudo feito na hora, na chapa e na brasa. Escolha uma categoria e adicione ao carrinho.</p>
+<div class="tabs" id="tabs"></div><div class="grid" id="menu"></div></section>
+
+<section id="monte"><h2>MONTE SEU BURGER</h2><p class="sub">Escolha cada etapa e veja o burger ganhar forma.</p>
+<div class="card build"><div id="steps"></div>
+<div><div class="prev" id="prev"></div><button class="btn" id="addB" style="width:100%;margin-top:16px"></button></div></div></section>
+
+<section id="combos"><h2>COMBOS</h2><p class="sub">Mais sabor, menos preço.</p><div class="combos" id="cmb"></div></section>
+
+<section><div class="promo"><div><h2>TERÇA DO SMASH</h2><p style="margin:12px 0 22px;max-width:44ch">Toda terça-feira: 2 Smash Burgers pelo preço de 1. Termina em:</p>
+<div class="cd" id="cd"></div></div><div><button class="btn" id="promoB" style="background:var(--tx);color:#222;box-shadow:none">APROVEITAR PROMOÇÃO</button></div></div></section>
+
+<section id="sobre" class="about"><div><h2>NOSSA HISTÓRIA</h2>
+<p class="sub" style="margin-bottom:0">Começamos pequenos, com uma chapa, uma receita de família e uma obsessão: fazer o melhor burger possível.</p>
+<div class="feat"><div>🥩 Ingredientes selecionados</div><div>🔪 Carne preparada diariamente</div><div>🍞 Pães frescos</div><div>🥫 Molhos artesanais</div><div style="grid-column:span 2">🔥 Preparação na brasa</div></div></div>
+<div class="kitchen"><div>🔥</div><div>🥩</div><div>🍳</div><div>👨‍🍳</div></div></section>
+
+<section id="avaliacoes"><h2>AVALIAÇÕES</h2><p class="sub">Quem provou, aprovou.</p><div class="rev"><div class="track" id="trk"></div></div><div class="dots" id="dots"></div></section>
+
+<section><h2>@BRASABURGER</h2><div class="gal" id="gal"></div><p style="margin-top:20px"><a class="btn ghost" href="#" onclick="return false">@brasaburger</a></p></section>
+
+<section id="contato"><h2>ONDE ESTAMOS</h2><div class="loc"><div class="card"><b>Rua da Brasa, 123 — Vila Madalena, São Paulo/SP</b> (endereço fictício)<br>
+Seg a qui: 18h–23h<br>Sex e sáb: 18h–00h<br>Domingo: 18h–22h<br>📞 (11) 4000-0000<br>💬 WhatsApp (11) 90000-0000<br><a class="btn" style="margin-top:12px" href="https://maps.google.com/?q=Vila+Madalena+São+Paulo" target="_blank" rel="noopener">Como chegar</a></div>
+<div class="card map"><svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><g stroke="#3a342e" stroke-width="10" fill="none"><path d="M0 80h400M0 200h400M90 0v300M260 0v300M0 260l400-200"/></g><path d="M0 140h400" stroke="#2f2a25" stroke-width="22"/><circle cx="260" cy="140" r="26" fill="#e5501b44"/><path d="M260 112a16 16 0 0 1 16 16c0 12-16 28-16 28s-16-16-16-28a16 16 0 0 1 16-16z" fill="#e5501b"/><circle cx="260" cy="128" r="6" fill="#fff"/></svg></div></div></section>
+
+<footer><div class="fg"><div><div class="logo" style="margin-bottom:10px">BRASA<span>BURGER</span></div>Hambúrguer artesanal na brasa. Feito com paciência, fogo e muito cheddar.<br><br>💳 Pix · Cartão · Dinheiro</div>
+<div><h4>Links rápidos</h4><a href="#cardapio">Cardápio</a><a href="#combos">Combos</a><a href="#sobre">Sobre nós</a><a href="#contato">Contato</a></div>
+<div><h4>Horários</h4>Seg–qui 18h–23h<br>Sex–sáb 18h–00h<br>Dom 18h–22h</div>
+<div><h4>Siga a gente</h4><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">TikTok</a><a href="#">Política de privacidade</a><a href="#">Termos de uso</a></div></div>
+<p class="copy">© 2026 Brasa Burger. Todos os direitos reservados.</p></footer>
+
+<a class="wa" id="wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+
+<div class="ov" id="ov"></div>
+<aside class="drawer" id="dr" aria-label="Carrinho"><div class="dh"><h3>SEU CARRINHO</h3><button id="cx" aria-label="Fechar" style="font-size:24px">✕</button></div>
+<div class="dbody" id="cbody"></div>
+<div><div class="f2" style="margin-top:10px"><input id="cup" placeholder="Tem algum cupom?"><button class="btn" id="cupB" style="padding:10px">Aplicar</button></div><div class="msg" id="cm"></div>
+<div class="tot" id="tot"></div><button class="btn" id="goCk" style="width:100%;margin-top:10px">Finalizar pedido</button></div></aside>
+
+<div class="modal" id="ck"><div class="mb"><button class="x" onclick="closeM()">✕</button><div id="ckb"></div></div></div>
+<div class="modal" id="tk"><div class="mb"><button class="x" onclick="closeM()">✕</button><div id="tkb"></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s),R=n=>"R$ "+n.toFixed(2).replace(".",",");
+const WA_NUMBER=""; // coloque o número real aqui, ex.: 5511999999999
+$("#wa").href="https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent("Olá! Vim pelo site da Brasa Burger e gostaria de fazer um pedido.");
+const P=[
+["Brasa Classic","Hambúrgueres",32,"🍔","Pão brioche, blend bovino, queijo cheddar, alface, tomate e molho especial.",4.8,1],
+["Duplo Fogo","Hambúrgueres",42,"🔥","Dois burgers, cheddar duplo, bacon, cebola crispy e molho da casa.",4.9,1],
+["Gorgonzola Gold","Hambúrgueres",38,"🧀","Blend 160g, gorgonzola cremoso, cebola caramelizada e rúcula.",4.7,0],
+["Picanha Prime","Hambúrgueres",44,"🥩","Burger de picanha, queijo prato, farofa de bacon e maionese defumada.",4.8,0],
+["Smoky Bacon","Smash Burgers",34,"🥓","Smash burger, cheddar, bacon crocante, cebola caramelizada e barbecue.",4.9,1],
+["Smash Duplo","Smash Burgers",36,"🍔","2 smashs, cheddar derretido, picles e molho especial.",4.8,0],
+["Smash Jalapeño","Smash Burgers",35,"🌶️","Smash, muçarela, jalapeño e maionese picante.",4.6,0],
+["Combo Brasa","Combos",49,"🍟","Burger + batata + refrigerante.",4.8,1],
+["Batata Rústica","Acompanhamentos",18,"🍟","Batata com casca, alho e alecrim.",4.7,0],
+["Onion Rings","Acompanhamentos",20,"🧅","Anéis de cebola empanados com molho barbecue.",4.6,0],
+["Limonada da Casa","Bebidas",12,"🍋","Limão siciliano, hortelã e gelo.",4.7,0],
+["Brownie na Brasa","Sobremesas",22,"🍫","Brownie quente com sorvete de creme.",4.9,1]];
+const CATS=["Todos","Hambúrgueres","Smash Burgers","Combos","Acompanhamentos","Bebidas","Sobremesas"];
+let cart=[],coupon=null,cat="Todos";
+const CP={BRASA10:["10% off",s=>s*.1],PRIMEIRACOMPRA:["R$ 15 off",s=>Math.min(15,s)],BURGER20:["20% off",s=>s*.2]};
+$("#tabs").innerHTML=CATS.map(c=>`<button class="tab${c==cat?" a":""}" data-c="${c}">${c}</button>`).join("");
+$("#tabs").onclick=e=>{if(e.target.dataset.c){cat=e.target.dataset.c;document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("a",t.dataset.c==cat));draw()}};
+function draw(){$("#menu").innerHTML=P.map((p,i)=>({p,i})).filter(o=>cat=="Todos"||o.p[1]==cat).map(({p,i})=>`<div class="card prod"><div class="pimg">${p[3]}${p[6]?'<span class="pop">🔥 Popular</span>':""}</div><div class="pb"><div class="row"><h3>${p[0]}</h3><small>★ ${p[5]}</small></div><div class="ing">${p[4]}</div><div class="row"><span class="price">${R(p[2])}</span><button class="add" onclick="add(${i})">+ Adicionar</button></div></div></div>`).join("")}
+draw();
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("o");setTimeout(()=>e.classList.remove("o"),1800)}
+function addItem(n,pr,note){const f=cart.find(c=>c.n==n&&!c.note);if(f&&!note)f.q++;else cart.push({n,pr,q:1,note:note||"",obs:""});upd();toast("Adicionado: "+n)}
+function add(i){addItem(P[i][0],P[i][2])}
+const sub=()=>cart.reduce((s,c)=>s+c.pr*c.q,0);
+let mode="Entrega";const fee=()=>cart.length&&mode=="Entrega"?7:0;
+const disc=()=>coupon?CP[coupon][1](sub()):0;
+function upd(){$("#cnt").textContent=cart.reduce((s,c)=>s+c.q,0);
+$("#cbody").innerHTML=cart.length?cart.map((c,i)=>`<div class="ci"><div class="row"><b>${c.n}</b><span>${R(c.pr*c.q)}</span></div>${c.note?`<small style="color:var(--mu)">${c.note}</small>`:""}<div class="row"><div class="q"><button onclick="qty(${i},-1)">−</button>${c.q}<button onclick="qty(${i},1)">+</button></div><button onclick="cart.splice(${i},1);upd()" style="color:var(--mu)">Remover</button></div><input placeholder="Observações (ex.: sem cebola)" value="${c.obs}" oninput="cart[${i}].obs=this.value"></div>`).join(""):'<p style="color:var(--mu);text-align:center;margin-top:40px">Seu carrinho está vazio.<br>Escolha um burger no cardápio.</p>';
+$("#tot").innerHTML=`<div class="row"><span>Subtotal</span><span>${R(sub())}</span></div><div class="row"><span>Taxa de entrega</span><span>${R(fee())}</span></div><div class="row"><span>Desconto${coupon?" ("+coupon+")":""}</span><span>− ${R(disc())}</span></div><div class="row big"><span>Total</span><span>${R(Math.max(0,sub()+fee()-disc()))}</span></div>`}
+function qty(i,d){cart[i].q+=d;if(cart[i].q<1)cart.splice(i,1);upd()}
+$("#cupB").onclick=()=>{const v=$("#cup").value.trim().toUpperCase();if(CP[v]){coupon=v;$("#cm").textContent="Cupom aplicado: "+CP[v][0]}else{coupon=null;$("#cm").textContent="Cupom inválido. Tente BRASA10, PRIMEIRACOMPRA ou BURGER20."}upd()};
+const total=()=>Math.max(0,sub()+fee()-disc());
+function cart_(o){$("#dr").classList.toggle("o",o);$("#ov").classList.toggle("o",o)}
+$("#cartBtn").onclick=()=>cart_(1);$("#cx").onclick=$("#ov").onclick=()=>{cart_(0);closeM()};
+$("#burg").onclick=()=>$("#links").classList.toggle("o");$("#links").onclick=()=>$("#links").classList.remove("o");
+addEventListener("scroll",()=>$("#hd").classList.toggle("s",scrollY>40));
+function closeM(){document.querySelectorAll(".modal").forEach(m=>m.classList.remove("o"));$("#ov").classList.remove("o");clearInterval(tt)}
+
+/* Monte seu burger */
+const B=[["Pão",[["Brioche",0],["Australiano",2],["Gergelim",1]],1],["Carne",[["120g",14],["160g",18],["2x Smash",22],["3x Smash",30]],1],["Queijos",[["Cheddar",3],["Muçarela",3],["Prato",3],["Gorgonzola",5]],0],["Adicionais",[["Bacon",5],["Cebola caramelizada",3],["Cebola crispy",3],["Ovo",3],["Jalapeño",2],["Picles",2]],0],["Molho",[["Especial da casa",0],["Barbecue",1],["Picante",1],["Maionese defumada",2]],1]];
+const sel=[[0],[1],[0],[],[0]];
+$("#steps").innerHTML=B.map((s,i)=>`<div class="step"><h4>${i+1}. Escolha ${i==1?"a carne":i==0?"o pão":i==2?"os queijos":i==3?"adicionais":"o molho"}</h4><div class="opts">${s[1].map((o,j)=>`<button class="opt" data-i="${i}" data-j="${j}">${o[0]} <small>${o[1]?"+"+R(o[1]).replace(",00",""):""}</small></button>`).join("")}</div></div>`).join("");
+$("#steps").onclick=e=>{const b=e.target.closest(".opt");if(!b)return;const i=+b.dataset.i,j=+b.dataset.j;if(B[i][2])sel[i]=[j];else sel[i]=sel[i].includes(j)?sel[i].filter(x=>x!=j):[...sel[i],j];bd()};
+const bprice=()=>14+sel.reduce((s,a,i)=>s+a.reduce((t,j)=>t+B[i][1][j][1],0),0)+4;
+function bd(){document.querySelectorAll(".opt").forEach(o=>o.classList.toggle("a",sel[+o.dataset.i].includes(+o.dataset.j)));
+const L=(c,w,h,r)=>`<div class="layer" style="--c:${c};--w:${w}px;--h:${h}px;--rad:${r}px"></div>`;
+const bunC=["#e39a35","#b8651f","#efb54d"][sel[0][0]];let h=L(bunC,210,50,"60px 60px 8px 8px");
+h+=L(["#d6371f","#a22","#7a1a10","#b33"][sel[4][0]],200,8,6);
+sel[3].forEach(j=>h+=L(["#c04a3a","#a8741f","#d9a441","#f5e6a8","#3f8f2a","#7aa43a"][j],196,10,6));
+sel[2].forEach(j=>h+=L(["#ffb81c","#fff0c2","#f3d27a","#a8c0d8"][j],214,8,3));
+const n=[1,1,2,3][sel[1][0]];for(let k=0;k<n;k++)h+=L("#4a2417",206,n>1?16:26,12);
+h+=L("#5fae3a",218,8,8)+L(bunC,214,30,"6px 6px 30px 30px");
+$("#prev").innerHTML=h;
+$("#addB").textContent="Adicionar ao carrinho — "+R(bprice())}
+$("#addB").onclick=()=>addItem("Burger personalizado",bprice(),sel.map((a,i)=>a.map(j=>B[i][1][j][0]).join(", ")).filter(Boolean).join(" · "));
+bd();
+/* o preview empilha de baixo para cima: inverter ordem */
+$("#prev").style.flexDirection="column";
+
+/* Combos */
+const C=[["Combo Brasa","Burger + batata + refrigerante.",49,0],["Combo Duplo","2 burgers + batata grande + 2 bebidas.",89,1],["Combo Família","4 burgers + 2 batatas grandes + 4 bebidas.",159,0]];
+$("#cmb").innerHTML=C.map((c,i)=>`<div class="card combo${c[3]?" best":""}">${c[3]?'<span class="tag">Melhor custo-benefício</span>':""}<h3 style="font-size:28px">${c[0]}</h3><p style="color:var(--mu);margin:8px 0 18px">${c[1]}</p><div class="row"><span class="price">${R(c[2])}</span><button class="add" onclick="addItem('${c[0]}',${c[2]})">+ Adicionar</button></div></div>`).join("");
+$("#promoB").onclick=()=>{addItem("Smash Duplo (Terça do Smash)",36);addItem("Smash Duplo (grátis)",0)};
+
+/* Contador */
+function tick(){const n=new Date(),t=new Date(n);t.setHours(23,59,59,0);const d=t-n,p=x=>String(x).padStart(2,"0");$("#cd").innerHTML=[["h",Math.floor(d/36e5)],["min",Math.floor(d/6e4)%60],["seg",Math.floor(d/1e3)%60]].map(a=>`<div><b>${p(a[1])}</b>${a[0]}</div>`).join("")}tick();setInterval(tick,1000);
+
+/* Avaliações */
+const V=[["Marina S.","Simplesmente absurdo. O melhor smash que já comi.","12/09/2026"],["Rafael T.","O bacon é surreal e a entrega chegou muito rápida.","28/09/2026"],["Camila O.","Carne no ponto, pão fresquinho. Já virou ritual de sexta.","03/10/2026"],["Bruno L.","O Duplo Fogo é covardia. Pedi de novo no dia seguinte.","05/10/2026"]];
+$("#trk").innerHTML=V.map(v=>`<div class="rc"><div class="card rcard"><div class="q" style="margin-bottom:12px"><div class="av">${v[0][0]}</div><div><b>${v[0]}</b><div class="stars">★★★★★</div></div></div><p>“${v[1]}”</p><small style="color:var(--mu)">${v[2]}</small></div></div>`).join("");
+let ri=0;const per=()=>innerWidth>=800?2:1;
+$("#dots").innerHTML=V.map((_,i)=>`<i data-i="${i}"></i>`).join("");
+function slide(){const m=V.length-per();if(ri>m)ri=0;$("#trk").style.transform=`translateX(-${ri*100/per()}%)`;document.querySelectorAll("#dots i").forEach((d,i)=>d.classList.toggle("a",i==ri))}
+$("#dots").onclick=e=>{if(e.target.dataset.i){ri=+e.target.dataset.i;slide()}};setInterval(()=>{ri++;slide()},4500);slide();
+
+/* Galeria */
+$("#gal").innerHTML=["🍔","🔥","🍟","🥓","🧀","🍫","🍋","🥩"].map((e,i)=>`<div class="gi">${e}<span>📷<b>❤ ${(i*37+120)}</b>💬 ${i*3+8}</span></div>`).join("");
+
+/* Checkout */
+let step=0,D={nome:"",tel:"",cep:"",rua:"",num:"",comp:"",bairro:"",pag:"Pix",troco:""},oid,tt;
+$("#goCk").onclick=()=>{if(!cart.length){toast("Adicione algo ao carrinho");return}cart_(0);step=0;ckr();$("#ck").classList.add("o");$("#ov").classList.add("o")};
+const inp=(k,ph)=>`<input placeholder="${ph}" value="${D[k]}" oninput="D['${k}']=this.value">`;
+function ckr(){const T=["Seus dados","Entrega","Pagamento","Resumo"];let h=`<div class="sp">${T.map((_,i)=>`<i class="${i<=step?"a":""}"></i>`).join("")}</div><h3 style="font-size:30px">${T[step].toUpperCase()}</h3><div class="f">`;
+if(step==0)h+=inp("nome","Nome")+inp("tel","Telefone (com DDD)");
+if(step==1)h+=`<div class="pay">${["Entrega","Retirada na loja"].map(m=>`<button class="opt${mode==m?" a":""}" onclick="mode='${m}';upd();ckr()">${m}</button>`).join("")}</div>`+(mode=="Entrega"?inp("cep","CEP")+inp("rua","Rua")+`<div class="f2">${inp("num","Número")}${inp("comp","Complemento")}</div>`+inp("bairro","Bairro"):"<p style='color:var(--mu)'>Retire em: Rua da Brasa, 123 — Vila Madalena. Taxa de entrega zerada.</p>");
+if(step==2){h+=`<div class="pay">${["Pix","Cartão","Dinheiro"].map(m=>`<button class="opt${D.pag==m?" a":""}" onclick="D.pag='${m}';ckr()">${m}</button>`).join("")}</div>`;if(D.pag=="Dinheiro")h+=`<label>Precisa de troco para quanto?</label>`+inp("troco","Ex.: R$ 100")}
+if(step==3)h+=cart.map(c=>`<div class="row"><span>${c.q}x ${c.n}</span><span>${R(c.pr*c.q)}</span></div>`).join("")+`<hr style="border-color:#3a342e;width:100%"><div class="row"><span>${mode}</span><span>${R(fee())}</span></div><div class="row"><span>Pagamento</span><span>${D.pag}</span></div><div class="row big price"><span>Total</span><span>${R(total())}</span></div>`;
+h+=`</div><div class="row">${step?'<button class="btn ghost" onclick="step--;ckr()">Voltar</button>':"<span></span>"}<button class="btn" onclick="nx()">${step==3?"CONFIRMAR PEDIDO":"Continuar"}</button></div><div class="msg" id="em"></div>`;$("#ckb").innerHTML=h}
+function nx(){let e="";if(step==0&&(!D.nome.trim()||D.tel.replace(/\D/g,"").length<10))e="Informe seu nome e um telefone com DDD.";
+if(step==1&&mode=="Entrega"&&(!D.rua.trim()||!D.num.trim()||!D.bairro.trim()))e="Preencha rua, número e bairro.";
+if(e){$("#em").textContent=e;return}if(step<3){step++;ckr();return}
+oid="BB"+Math.floor(10000+Math.random()*90000);const eta=mode=="Entrega"?"32–45 minutos":"20–25 minutos";
+$("#ckb").innerHTML=`<div style="text-align:center"><h3 style="font-size:38px">Pedido confirmado! 🔥</h3><p style="margin:14px 0">Número do pedido <b class="price">#${oid}</b></p><p style="color:var(--mu)">Previsão: ${eta}</p><button class="btn" style="margin-top:22px" onclick="track()">Acompanhar pedido</button></div>`;cart=[];coupon=null;upd()}
+const ST=[["✓","Pedido recebido"],["🧑‍🍳","Preparando"],["🔥","Na chapa"],["🚴","Saiu para entrega"],["✓","Entregue"]];
+function track(){closeM();$("#ov").classList.add("o");$("#tk").classList.add("o");let s=0;const r=()=>{$("#tkb").innerHTML=`<h3 style="font-size:30px">PEDIDO #${oid}</h3><p style="color:var(--gold)">${s<4?"Chega aproximadamente em 32–45 minutos.":"Bom apetite! 🔥"}</p><ul class="tl">${ST.map((x,i)=>`<li class="${i<s?"d":""}${i==s?" d c":""}"><i>${x[0]}</i><b>${x[1]}</b></li>`).join("")}</ul>`};r();tt=setInterval(()=>{if(s<4){s++;r()}else clearInterval(tt)},2500)}
+upd();
+</script></body></html>
